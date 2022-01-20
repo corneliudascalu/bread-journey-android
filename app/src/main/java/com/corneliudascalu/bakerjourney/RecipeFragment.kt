@@ -7,6 +7,7 @@ import android.text.SpannableStringBuilder
 import android.text.style.StyleSpan
 import android.text.style.TypefaceSpan
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import com.corneliudascalu.bakerjourney.databinding.FragmentRecipeBinding
@@ -41,9 +42,10 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
             binding.recipeText.text = builder
         }
 
-
+        binding.startLogEntryButton.setOnClickListener { Toast.makeText(requireContext(), "TODO Start a new log entry", Toast.LENGTH_SHORT).show() }
     }
 
+    // TODO Create a full fledged data class to hold recipe step information
     private fun addStep(builder: SpannableStringBuilder, @StringRes text: Int, value: String) {
         builder.append(getString(text).replace("{value}", value)).append("\n")
         val indexOf = builder.indexOf(value)
