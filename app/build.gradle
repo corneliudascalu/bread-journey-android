@@ -4,6 +4,11 @@ plugins {
     id "org.jetbrains.kotlin.plugin.parcelize"
 }
 
+// Load keystore
+def keystorePropsFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropsFile))
+
 android {
     compileSdk 31
 
@@ -17,9 +22,19 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        release {
+            storeFile file(keystoreProperties["keystorePath"])
+            storePassword keystoreProperties["storePassword"]
+            keyAlias keystoreProperties["alias"]
+            keyPassword keystoreProperties["keyPassword"]
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
