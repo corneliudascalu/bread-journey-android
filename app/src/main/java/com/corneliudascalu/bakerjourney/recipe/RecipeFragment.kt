@@ -1,15 +1,16 @@
-package com.corneliudascalu.bakerjourney
+package com.corneliudascalu.bakerjourney.recipe
 
 import android.graphics.Typeface
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.StyleSpan
-import android.text.style.TypefaceSpan
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.corneliudascalu.bakerjourney.*
 import com.corneliudascalu.bakerjourney.databinding.FragmentRecipeBinding
 
 class RecipeFragment : Fragment(R.layout.fragment_recipe) {
@@ -34,12 +35,23 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
             val flourQty = flour.quantity.toString()
             val builder = SpannableStringBuilder()
 
+            // TODO Get the steps from a repository
+            val steps = mutableListOf<CheckableStep>()
+            steps.add(CheckableStep(Step(water, "${water.quantity}g water")))
+            steps.add(CheckableStep(Step(salt, "${salt.quantity}g salt")))
+            steps.add(CheckableStep(Step(starter, "${starter.quantity}g starter")))
+            steps.add(CheckableStep(Step(flour, "${flour.quantity}g flour")))
+
+            val stepsAdapter = StepsAdapter()
+            binding.stepList.adapter = stepsAdapter
+            binding.stepList.layoutManager = LinearLayoutManager(requireContext())
+            stepsAdapter.submitList(steps)
+
             addStep(builder, R.string.water_step, waterQty)
             addStep(builder, R.string.salt_step, saltQty)
             addStep(builder, R.string.starter_step, starterQty)
             addStep(builder, R.string.flour_step, flourQty)
 
-            binding.recipeText.text = builder
         }
 
         binding.startLogEntryButton.setOnClickListener { Toast.makeText(requireContext(), "TODO Start a new log entry", Toast.LENGTH_SHORT).show() }

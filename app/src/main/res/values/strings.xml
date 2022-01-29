@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Baker\'s Journey</string>
+    <string name="app_name">Baker Life</string>
     <string name="water_step">Add {value} grams water.</string>
     <string name="salt_step">Add {value} grams salt.</string>
     <string name="starter_step">Add {value} grams starter and mix well.</string>

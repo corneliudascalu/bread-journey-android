@@ -12,6 +12,10 @@ sealed class Ingredient(val quantity: Int) {
     class Starter(val flour: Flour, val water: Water) : Ingredient(flour.quantity + water.quantity)
 }
 
+data class Step(val ingredient: Ingredient, val comment: String)
+data class CheckableStep(val step: Step, val checked: Boolean = false)
+data class Recipe(val steps: List<Step>, val description: String)
+
 @Parcelize
 data class DoughChoices(
     val flour: Int,

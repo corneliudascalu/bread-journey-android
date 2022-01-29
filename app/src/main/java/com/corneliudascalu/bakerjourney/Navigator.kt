@@ -3,6 +3,7 @@ package com.corneliudascalu.bakerjourney
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.commit
+import com.corneliudascalu.bakerjourney.recipe.RecipeFragment
 
 fun FragmentManager.navigateToCalculator(fragmentManager: FragmentManager) {
     fragmentManager.commit {

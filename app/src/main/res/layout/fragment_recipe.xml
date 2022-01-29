@@ -6,15 +6,12 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/recipeText"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/stepList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:textSize="18sp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/startLogEntryButton"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="This is the recipe" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/startLogEntryButton"
