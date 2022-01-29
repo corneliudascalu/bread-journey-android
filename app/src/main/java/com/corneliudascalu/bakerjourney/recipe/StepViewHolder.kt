@@ -1,9 +1,7 @@
 package com.corneliudascalu.bakerjourney.recipe
 
-import android.graphics.Paint
 import android.text.Spannable
 import android.text.style.StrikethroughSpan
-import android.text.style.TypefaceSpan
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.text.clearSpans
@@ -16,6 +14,7 @@ import com.corneliudascalu.bakerjourney.databinding.ListItemRecipeStepBinding
 class StepViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.list_item_recipe_step, parent, false)) {
     fun bind(step: CheckableStep, checkListener: (isChecked: Boolean) -> Unit) {
         val binding = ListItemRecipeStepBinding.bind(itemView)
+        binding.stepCheckbox.setOnCheckedChangeListener(null)
         binding.stepCheckbox.isChecked = step.checked
         binding.stepCheckbox.setOnCheckedChangeListener { _, isChecked -> checkListener(isChecked) }
         val comment: Spannable = step.step.comment.toSpannable()
@@ -25,7 +24,6 @@ class StepViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflater
         } else {
             comment.clearSpans()
         }
-        binding.stepDescription.text = comment
-
+        binding.stepCheckbox.text = comment
     }
 }

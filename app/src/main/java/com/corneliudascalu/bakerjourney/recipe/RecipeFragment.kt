@@ -44,6 +44,7 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
 
             val stepsAdapter = StepsAdapter()
             binding.stepList.adapter = stepsAdapter
+            binding.stepList.itemAnimator = null
             binding.stepList.layoutManager = LinearLayoutManager(requireContext())
             stepsAdapter.submitList(steps)
 
