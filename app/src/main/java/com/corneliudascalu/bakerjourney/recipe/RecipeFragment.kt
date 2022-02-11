@@ -9,9 +9,11 @@ import android.view.View
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.corneliudascalu.bakerjourney.*
 import com.corneliudascalu.bakerjourney.databinding.FragmentRecipeBinding
+import com.corneliudascalu.bakerjourney.log.LogFragment
 
 class RecipeFragment : Fragment(R.layout.fragment_recipe) {
 
@@ -55,7 +57,9 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
 
         }
 
-        binding.startLogEntryButton.setOnClickListener { Toast.makeText(requireContext(), "TODO Start a new log entry", Toast.LENGTH_SHORT).show() }
+        binding.startLogEntryButton.setOnClickListener {
+            parentFragmentManager.navigateToLog()
+        }
     }
 
     // TODO Create a full fledged data class to hold recipe step information

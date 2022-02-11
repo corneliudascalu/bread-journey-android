@@ -25,8 +25,11 @@ class CalculatorFragment : Fragment(R.layout.fragment_calculator) {
                     (binding.waterSlider.value.toInt() / 100.0).toFloat(),
                     binding.starterSlider.value / 100
                 )
-                parentFragmentManager.navigateToRecipe(parentFragmentManager, breadPreferences)
+                parentFragmentManager.navigateToRecipe(breadPreferences)
             }
         }
+
+        // TODO Bottom nav
+        binding.notebookButton.setOnClickListener { parentFragmentManager.navigateToLog() }
     }
 }
