@@ -23,7 +23,7 @@ class LogFragment : Fragment(R.layout.fragment_log) {
 
         // TODO Load entries from db
         val list = mutableListOf<LogEntry>()
-        for (i in 1..10) {
+        for (i in 1..20) {
             list.add(LogEntry(randomString(20)))
         }
         adapter.submitList(list)
