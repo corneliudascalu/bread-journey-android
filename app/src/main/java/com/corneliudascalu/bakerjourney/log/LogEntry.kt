@@ -1,3 +1,10 @@
 package com.corneliudascalu.bakerjourney.log
 
-data class LogEntry(val description: String)
+import java.util.*
+
+data class LogEntry(
+    val id: String = UUID.randomUUID().toString(),
+    val iconUrl: String,
+    val name: String,
+    val description: String
+)
