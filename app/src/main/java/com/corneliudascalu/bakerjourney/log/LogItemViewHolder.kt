@@ -17,7 +17,7 @@ class LogItemViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInfla
         binding.mtrlListItemSecondaryText.text = item.description
         Glide.with(binding.root)
             .load(item.iconUrl)
-            .fitCenter()
+            .centerCrop()
             .placeholder(R.drawable.ic_baseline_grain_24)
             .into(binding.mtrlListItemIcon)
         binding.root.setOnClickListener {
