@@ -21,30 +21,7 @@ class LogFragment : Fragment(R.layout.fragment_log) {
         // TODO Investigate if something fancy could be done here
         binding.log.itemAnimator = null
 
-        // TODO Load entries from db
-        val list = mutableListOf<LogEntry>()
-        val names = listOf(
-            "White Bread", "Whole Wheat Bread",
-            "Whole Wheat Seeded Bread",
-            "Rye Bread",
-            "Pan Loaf",
-            "Cozonac",
-            "Focaccia"
-        )
-        val descriptions = listOf(
-            "Delicious with butter and honey",
-            "Crusty and dark, with a heartwarming aroma",
-            "Just perfect for an avocado toast",
-            "Filled with seeds, nuts and goodness"
-        )
-        for (i in 1..20) {
-            LogEntry(
-                iconUrl = "https://picsum.photos/200?random=$i",
-                name = names.random(),
-                description = descriptions.random()
-            ).also { list.add(it) }
-        }
-        adapter.submitList(list)
+        adapter.submitList(LogRepository().getLogEntries())
     }
 
     private fun randomString(length: Int): String {
