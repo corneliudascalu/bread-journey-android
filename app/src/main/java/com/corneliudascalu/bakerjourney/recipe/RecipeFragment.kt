@@ -6,14 +6,11 @@ import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.StyleSpan
 import android.view.View
-import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.corneliudascalu.bakerjourney.*
 import com.corneliudascalu.bakerjourney.databinding.FragmentRecipeBinding
-import com.corneliudascalu.bakerjourney.log.LogFragment
 
 class RecipeFragment : Fragment(R.layout.fragment_recipe) {
 
@@ -38,11 +35,11 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
             val builder = SpannableStringBuilder()
 
             // TODO Get the steps from a repository
-            val steps = mutableListOf<CheckableStep>()
-            steps.add(CheckableStep(Step(water, "${water.quantity}g water")))
-            steps.add(CheckableStep(Step(salt, "${salt.quantity}g salt")))
-            steps.add(CheckableStep(Step(starter, "${starter.quantity}g starter")))
-            steps.add(CheckableStep(Step(flour, "${flour.quantity}g flour")))
+            val steps = mutableListOf<Step.CheckableStep>()
+            steps.add(Step.CheckableStep(Step.IngredientStep(water, "${water.quantity}g water")))
+            steps.add(Step.CheckableStep(Step.IngredientStep(salt, "${salt.quantity}g salt")))
+            steps.add(Step.CheckableStep(Step.IngredientStep(starter, "${starter.quantity}g starter")))
+            steps.add(Step.CheckableStep(Step.IngredientStep(flour, "${flour.quantity}g flour")))
 
             val stepsAdapter = StepsAdapter()
             binding.stepList.adapter = stepsAdapter

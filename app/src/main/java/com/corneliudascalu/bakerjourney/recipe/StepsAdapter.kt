@@ -3,7 +3,7 @@ package com.corneliudascalu.bakerjourney.recipe
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.corneliudascalu.bakerjourney.CheckableStep
+import com.corneliudascalu.bakerjourney.Step.CheckableStep
 
 class StepsAdapter : ListAdapter<CheckableStep, StepViewHolder>(StepDiffUtilCallback()) {
 

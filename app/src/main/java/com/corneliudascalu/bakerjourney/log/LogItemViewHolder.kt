@@ -12,7 +12,7 @@ import com.corneliudascalu.bakerjourney.databinding.ListItemLogEntryBinding
 class LogItemViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.list_item_log_entry, parent, false)) {
     val binding = ListItemLogEntryBinding.bind(itemView)
 
-    fun bind(item: LogEntry) {
+    fun bind(item: ShortLogEntry) {
         binding.mtrlListItemText.text = item.name
         binding.mtrlListItemSecondaryText.text = item.description
         Glide.with(binding.root)

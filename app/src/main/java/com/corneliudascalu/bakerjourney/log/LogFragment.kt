@@ -21,7 +21,7 @@ class LogFragment : Fragment(R.layout.fragment_log) {
         // TODO Investigate if something fancy could be done here
         binding.log.itemAnimator = null
 
-        adapter.submitList(LogRepository().getLogEntries())
+        adapter.submitList(ShortLogRepository().getLogEntries())
     }
 
     private fun randomString(length: Int): String {
