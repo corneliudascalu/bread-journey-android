@@ -4,13 +4,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 
-class LogAdapter : ListAdapter<ShortLogEntry, LogItemViewHolder>(LogEntryDiffUtil()) {
+class LogAdapter(
+    private val itemClickListener: (String) -> Unit
+) : ListAdapter<ShortLogEntry, LogItemViewHolder>(LogEntryDiffUtil()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LogItemViewHolder {
         return LogItemViewHolder(parent)
     }
 
     override fun onBindViewHolder(holder: LogItemViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), itemClickListener)
     }
 }
 

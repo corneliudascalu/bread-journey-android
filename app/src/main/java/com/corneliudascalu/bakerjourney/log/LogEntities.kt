@@ -5,7 +5,7 @@ import java.util.*
 
 data class ShortLogEntry(
     val id: String = UUID.randomUUID().toString(),
-    val iconUrl: String,
+    val iconUrl: String?,
     val name: String,
     val description: String
 )

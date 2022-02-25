@@ -5,7 +5,9 @@ import com.corneliudascalu.bakerjourney.Step
 import kotlin.random.Random
 
 class LogRepository {
-    fun getAll() {
+    private val list: List<LogEntry>
+
+    init {
         val names = listOf(
             "White Bread", "Whole Wheat Bread",
             "Whole Wheat Seeded Bread",
@@ -26,7 +28,7 @@ class LogRepository {
             "Put dough in the fridge for 12 hours",
             "Divide the dough"
         )
-        val list = mutableListOf<LogEntry>()
+        list = mutableListOf()
         for (i in 1..20) {
             LogEntry(
                 photoUrl = "https://picsum.photos/600?random=$i",
@@ -41,5 +43,13 @@ class LogRepository {
                 )
             ).also { list.add(it) }
         }
+    }
+
+    fun getAll(): List<LogEntry> {
+        return list
+    }
+
+    operator fun get(key: String): LogEntry? {
+        return list.find { it.id == key }
     }
 }

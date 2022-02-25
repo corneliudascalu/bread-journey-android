@@ -12,7 +12,7 @@ import com.corneliudascalu.bakerjourney.databinding.ListItemLogEntryBinding
 class LogItemViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.list_item_log_entry, parent, false)) {
     val binding = ListItemLogEntryBinding.bind(itemView)
 
-    fun bind(item: ShortLogEntry) {
+    fun bind(item: ShortLogEntry, itemClickListener: (String) -> Unit) {
         binding.mtrlListItemText.text = item.name
         binding.mtrlListItemSecondaryText.text = item.description
         Glide.with(binding.root)
@@ -21,6 +21,7 @@ class LogItemViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(LayoutInfla
             .placeholder(R.drawable.ic_baseline_grain_24)
             .into(binding.mtrlListItemIcon)
         binding.root.setOnClickListener {
+            itemClickListener(item.id)
             Toast.makeText(binding.root.context, item.description, Toast.LENGTH_SHORT).show()
         }
     }
