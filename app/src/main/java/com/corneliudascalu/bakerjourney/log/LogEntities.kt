@@ -4,14 +4,14 @@ import com.corneliudascalu.bakerjourney.Step
 import java.util.*
 
 data class ShortLogEntry(
-    val id: String = UUID.randomUUID().toString(),
+    val id: String,
     val iconUrl: String?,
     val name: String,
     val description: String
 )
 
 data class LogEntry(
-    val id: String = UUID.randomUUID().toString(),
+    val id: String,
     val type: String = "bread", // TODO Define types
     val photoUrl: String? = null, // TODO Maybe a photo gallery?
     val name: String,

@@ -2,6 +2,7 @@ package com.corneliudascalu.bakerjourney.log
 
 import com.corneliudascalu.bakerjourney.Ingredient
 import com.corneliudascalu.bakerjourney.Step
+import java.util.*
 import kotlin.random.Random
 
 class LogRepository {
@@ -31,6 +32,7 @@ class LogRepository {
         list = mutableListOf()
         for (i in 1..20) {
             LogEntry(
+                id = UUID.randomUUID().toString(),
                 photoUrl = "https://picsum.photos/600?random=$i",
                 name = names.random(),
                 description = descriptions.random(),

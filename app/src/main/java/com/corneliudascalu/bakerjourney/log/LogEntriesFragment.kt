@@ -7,8 +7,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.corneliudascalu.bakerjourney.R
 import com.corneliudascalu.bakerjourney.databinding.FragmentListBinding
 import com.corneliudascalu.bakerjourney.navigateToLogEntry
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-class LogEntriesFragment : Fragment(R.layout.fragment_list) {
+class LogEntriesFragment : Fragment(R.layout.fragment_list), KoinComponent {
+    private val repository: ShortLogRepository by inject()
     private val binding by lazy { FragmentListBinding.bind(requireView()) }
     private val adapter = LogAdapter {
         parentFragmentManager.navigateToLogEntry(it)
@@ -22,6 +25,6 @@ class LogEntriesFragment : Fragment(R.layout.fragment_list) {
         // TODO Investigate if something fancy could be done here
         binding.recyclerView.itemAnimator = null
 
-        adapter.submitList(ShortLogRepository().getAll())
+        adapter.submitList(repository.getAll())
     }
 }
