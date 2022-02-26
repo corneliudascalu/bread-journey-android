@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.corneliudascalu.bakerjourney.R
 import com.corneliudascalu.bakerjourney.databinding.FragmentListBinding
+import com.corneliudascalu.bakerjourney.navigateToCalculator
 import com.corneliudascalu.bakerjourney.navigateToLogEntry
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -26,5 +27,7 @@ class LogEntriesFragment : Fragment(R.layout.fragment_list), KoinComponent {
         binding.recyclerView.itemAnimator = null
 
         adapter.submitList(repository.getAll())
+
+        binding.newRecipe.setOnClickListener { parentFragmentManager.navigateToCalculator() }
     }
 }

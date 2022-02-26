@@ -10,6 +10,7 @@ import com.corneliudascalu.bakerjourney.recipe.RecipeFragment
 fun FragmentManager.navigateToCalculator() {
     commit {
         replace(R.id.container, CalculatorFragment())
+        addToBackStack(null)
     }
 }
 
