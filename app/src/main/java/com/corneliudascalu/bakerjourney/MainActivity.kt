@@ -11,10 +11,5 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        supportFragmentManager.commit {
-            replace(R.id.container, LogEntriesFragment())
-            addToBackStack(null)
-        }
     }
 }

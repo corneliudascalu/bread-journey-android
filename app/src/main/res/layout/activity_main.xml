@@ -9,6 +9,7 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:name="com.corneliudascalu.bakerjourney.log.LogEntriesFragment"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
