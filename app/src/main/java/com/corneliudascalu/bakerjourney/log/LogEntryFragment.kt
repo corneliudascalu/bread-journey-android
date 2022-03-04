@@ -2,6 +2,8 @@ package com.corneliudascalu.bakerjourney.log
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.corneliudascalu.bakerjourney.R
@@ -24,8 +26,12 @@ class LogEntryFragment : Fragment(R.layout.fragment_log_entry), KoinComponent {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentLogEntryBinding.bind(view)
+        (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbar)
         logEntryId?.also {
-            binding.name.text = logRepository[it]?.name
+            binding.toolbar.title = logRepository[it]?.name
+            binding.toolbar.subtitle = logRepository[it]?.description
+            binding.name.text =
+                logRepository[it]?.name + logRepository[it]?.name + logRepository[it]?.name + logRepository[it]?.name + logRepository[it]?.name + logRepository[it]?.name
         }
     }
 }
