@@ -7,7 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.corneliudascalu.bakerjourney.R
 import com.corneliudascalu.bakerjourney.UiResult
-import com.corneliudascalu.bakerjourney.databinding.FragmentListBinding
+import com.corneliudascalu.bakerjourney.databinding.FragmentLogEntriesBinding
 import com.corneliudascalu.bakerjourney.navigateToCalculator
 import com.corneliudascalu.bakerjourney.navigateToLogEntry
 import kotlinx.coroutines.flow.collect
@@ -15,8 +15,8 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.component.KoinComponent
 
-class LogEntriesFragment : Fragment(R.layout.fragment_list), KoinComponent {
-    private val binding by lazy { FragmentListBinding.bind(requireView()) }
+class LogEntriesFragment : Fragment(R.layout.fragment_log_entries), KoinComponent {
+    private val binding by lazy { FragmentLogEntriesBinding.bind(requireView()) }
     private val viewModel: LogEntriesViewModel by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
