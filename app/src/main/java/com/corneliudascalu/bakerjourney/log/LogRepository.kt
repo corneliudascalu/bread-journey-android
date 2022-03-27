@@ -38,8 +38,8 @@ class LogRepository {
                 description = descriptions.random(),
                 steps = listOf(
                     Step.TextStep(textSteps.random()),
-                    Step.IngredientStep(Ingredient.Flour(Random.nextInt(1000, 1800)), "g Flour"),
-                    Step.IngredientStep(Ingredient.Water(Random.nextInt(600, 1250)), "g Water"),
+                    Step.IngredientStep(Ingredient.Flour("white"), Random.nextInt(1000, 1800), "g Flour"),
+                    Step.IngredientStep(Ingredient.Water, Random.nextInt(600, 1250), "g Water"),
                     Step.TextStep(textSteps.random()),
                     Step.TextStep(textSteps.random())
                 )

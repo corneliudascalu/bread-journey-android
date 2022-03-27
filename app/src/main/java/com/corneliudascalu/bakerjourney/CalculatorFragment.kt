@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.corneliudascalu.bakerjourney.databinding.FragmentCalculatorBinding
+import kotlin.math.roundToInt
 
 class CalculatorFragment : Fragment(R.layout.fragment_calculator) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -23,7 +24,13 @@ class CalculatorFragment : Fragment(R.layout.fragment_calculator) {
                 val breadPreferences = DoughChoices(
                     binding.flourQty.text.toString().toInt(),
                     (binding.waterSlider.value.toInt() / 100.0).toFloat(),
-                    binding.starterSlider.value / 100
+                    binding.starterSlider.value / 100,
+                    ratios = listOf(
+                        IngredientPercentage(Ingredient.Flour("White"), Percentage(100)),
+                        IngredientPercentage(Ingredient.Water, Percentage(binding.waterSlider.value.toInt())),
+                        IngredientPercentage(Ingredient.Starter(Percentage(50), Percentage(50)), Percentage(binding.starterSlider.value.toInt())),
+                        IngredientPercentage(Ingredient.Salt, Percentage(2))
+                    )
                 )
                 parentFragmentManager.navigateToRecipe(breadPreferences)
             }

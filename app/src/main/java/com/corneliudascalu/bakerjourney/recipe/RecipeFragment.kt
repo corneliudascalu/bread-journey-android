@@ -18,28 +18,33 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentRecipeBinding.bind(view)
         arguments?.get(KEY_DOUGH_CHOICES)?.also {
+            // TODO This bunch of calculations should be extracted and made generic
             val doughChoices = it as DoughChoices
-            val fermentedFlour = doughChoices.flour * doughChoices.fermentedFlourPercent
-            val starter: Ingredient.Starter = Ingredient.Starter(
-                Ingredient.Flour(fermentedFlour.toInt()),
-                Ingredient.Water(fermentedFlour.toInt())
-            )
-            val flour = Ingredient.Flour(doughChoices.flour - starter.flour.quantity)
-            val water =
-                Ingredient.Water((doughChoices.flour * doughChoices.waterPercent - starter.water.quantity).toInt())
-            val salt = Ingredient.Salt((doughChoices.flour * 0.02).toInt())
-            val waterQty = water.quantity.toString()
-            val saltQty = salt.quantity.toString()
-            val starterQty = starter.quantity.toString()
-            val flourQty = flour.quantity.toString()
+
+            val flourAmount = doughChoices.flour
+
+            val starterPercentage = doughChoices.ratios.first { it.ingredient is Ingredient.Starter }
+            val starter = starterPercentage.ingredient as Ingredient.Starter
+            val flourInStarter = starter.flour(starterPercentage.fromTotal(flourAmount))
+            val waterInStarter = starter.water(starterPercentage.fromTotal(flourAmount))
+
+            // TODO Handle multiple types of flour
+            val flourPercentage = doughChoices.ratios.first { it.ingredient is Ingredient.Flour }
+            val waterPercentage = doughChoices.ratios.first { it.ingredient is Ingredient.Water }
+            val saltPercentage = doughChoices.ratios.first { it.ingredient is Ingredient.Salt }
+
+            val waterQty = waterPercentage.fromTotal(flourAmount) - waterInStarter
+            val saltQty = saltPercentage.fromTotal(flourAmount)
+            val starterQty = starterPercentage.fromTotal(flourAmount)
+            val flourQty = flourPercentage.fromTotal(flourAmount) - flourInStarter
             val builder = SpannableStringBuilder()
 
             // TODO Get the steps from a repository
             val steps = mutableListOf<Step.CheckableStep>()
-            steps.add(Step.CheckableStep(Step.IngredientStep(water, "${water.quantity}g water")))
-            steps.add(Step.CheckableStep(Step.IngredientStep(salt, "${salt.quantity}g salt")))
-            steps.add(Step.CheckableStep(Step.IngredientStep(starter, "${starter.quantity}g starter")))
-            steps.add(Step.CheckableStep(Step.IngredientStep(flour, "${flour.quantity}g flour")))
+            steps.add(Step.CheckableStep(Step.IngredientStep(Ingredient.Water, waterQty, "${waterQty}g water")))
+            steps.add(Step.CheckableStep(Step.IngredientStep(Ingredient.Salt, saltQty, "${saltQty}g salt")))
+            steps.add(Step.CheckableStep(Step.IngredientStep(Ingredient.Starter(), starterQty, "${starterQty}g starter")))
+            steps.add(Step.CheckableStep(Step.IngredientStep(Ingredient.Flour("white"), flourQty, "${flourQty}g flour")))
 
             val stepsAdapter = StepsAdapter()
             binding.stepList.adapter = stepsAdapter
@@ -47,10 +52,10 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
             binding.stepList.layoutManager = LinearLayoutManager(requireContext())
             stepsAdapter.submitList(steps)
 
-            addStep(builder, R.string.water_step, waterQty)
-            addStep(builder, R.string.salt_step, saltQty)
-            addStep(builder, R.string.starter_step, starterQty)
-            addStep(builder, R.string.flour_step, flourQty)
+            addStep(builder, R.string.water_step, waterQty.toString())
+            addStep(builder, R.string.salt_step, saltQty.toString())
+            addStep(builder, R.string.starter_step, starterQty.toString())
+            addStep(builder, R.string.flour_step, flourQty.toString())
 
         }
 
