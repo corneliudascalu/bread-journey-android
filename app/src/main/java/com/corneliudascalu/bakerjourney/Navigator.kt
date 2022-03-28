@@ -4,7 +4,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.commit
 import com.corneliudascalu.bakerjourney.log.LogEntriesFragment
-import com.corneliudascalu.bakerjourney.log.LogEntryFragment
+import com.corneliudascalu.bakerjourney.entry.LogEntryFragment
 import com.corneliudascalu.bakerjourney.recipe.RecipeFragment
 
 fun FragmentManager.navigateToCalculator() {
