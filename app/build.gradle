@@ -55,6 +55,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'com.corneliudascalu.bakerjourney'
 }
 
 dependencies {

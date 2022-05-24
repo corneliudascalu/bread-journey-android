@@ -8,7 +8,8 @@ const val KEY_DOUGH_CHOICES = "doughChoices"
 typealias Grams = Int
 
 @JvmInline
-value class Percentage(val value: Int) {
+@Parcelize
+value class Percentage(val value: Int) : Parcelable {
     init {
         require(value > 0)
         require(value <= 100)
