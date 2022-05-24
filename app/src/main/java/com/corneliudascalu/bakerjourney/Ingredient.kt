@@ -23,21 +23,21 @@ data class IngredientPercentage(val ingredient: Ingredient, val percentage: Perc
     }
 }
 
-sealed class Ingredient : Parcelable {
+sealed class Ingredient(val name: String) : Parcelable {
     @Parcelize
-    class Flour(val name: String) : Ingredient()
+    class Flour(private val type: String) : Ingredient("$type flour")
 
     @Parcelize
-    object Water : Ingredient()
+    object Water : Ingredient("Water")
 
     @Parcelize
-    object Salt : Ingredient()
+    object Salt : Ingredient("Salt")
 
     @Parcelize
     class Starter(
         private val flourPercentage: Percentage = Percentage(100),
         private val waterPercentage: Percentage = Percentage(100)
-    ) : Ingredient() {
+    ) : Ingredient("100% Starter") {
         fun flour(total: Grams): Grams = total * flourPercentage.value / 100
         fun water(total: Grams): Grams = total * waterPercentage.value / 100
     }

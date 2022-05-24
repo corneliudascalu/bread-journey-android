@@ -87,8 +87,9 @@ sealed class LogEntryDetailViewHolder<T : LogEntryDetail>(itemView: View) : Recy
             // TODO Define and handle other fancy stuff
             val description = item.description
             val startIndex = description.indexOf("{ingredient}")
-            val builder = SpannableStringBuilder(description.replace("{ingredient}", item.ingredient.toString()))
-            builder.setSpan(StyleSpan(Typeface.BOLD_ITALIC), startIndex, startIndex + item.ingredient.toString().length, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+            val ingredientName = item.ingredient.name
+            val builder = SpannableStringBuilder(description.replace("{ingredient}", ingredientName))
+            builder.setSpan(StyleSpan(Typeface.BOLD_ITALIC), startIndex, startIndex + ingredientName.length, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
             binding.description.text = builder
         }
     }

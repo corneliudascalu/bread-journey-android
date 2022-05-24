@@ -37,7 +37,6 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
             val saltQty = saltPercentage.fromTotal(flourAmount)
             val starterQty = starterPercentage.fromTotal(flourAmount)
             val flourQty = flourPercentage.fromTotal(flourAmount) - flourInStarter
-            val builder = SpannableStringBuilder()
 
             // TODO Get the steps from a repository
             val steps = mutableListOf<Step.CheckableStep>()
@@ -51,12 +50,6 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
             binding.stepList.itemAnimator = null
             binding.stepList.layoutManager = LinearLayoutManager(requireContext())
             stepsAdapter.submitList(steps)
-
-            addStep(builder, R.string.water_step, waterQty.toString())
-            addStep(builder, R.string.salt_step, saltQty.toString())
-            addStep(builder, R.string.starter_step, starterQty.toString())
-            addStep(builder, R.string.flour_step, flourQty.toString())
-
         }
 
         binding.startLogEntryButton.setOnClickListener {
