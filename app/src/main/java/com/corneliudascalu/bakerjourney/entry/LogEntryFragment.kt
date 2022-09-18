@@ -69,6 +69,7 @@ class LogEntryFragment : Fragment(R.layout.fragment_log_entry), KoinComponent {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
             parentFragmentManager.popBackStack()
