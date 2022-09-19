@@ -1,11 +1,8 @@
 package com.corneliudascalu.bakerjourney.entry
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.CheckBox
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -14,7 +11,6 @@ import com.bumptech.glide.Glide
 import com.corneliudascalu.bakerjourney.R
 import com.corneliudascalu.bakerjourney.Step
 import com.corneliudascalu.bakerjourney.databinding.FragmentLogEntryBinding
-import com.corneliudascalu.bakerjourney.databinding.ListItemLogEntryBinding
 import com.corneliudascalu.bakerjourney.log.LogRepository
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -44,11 +40,6 @@ class LogEntryFragment : Fragment(R.layout.fragment_log_entry), KoinComponent {
             binding.collapsingToolbar.title = logEntry.description
             binding.toolbar.subtitle = logEntry.description
 
-            Glide.with(binding.root)
-                .load(logEntry.photoUrl)
-                .centerCrop()
-                .into(binding.headerPhoto)
-
             val logEntryAdapter = LogEntryAdapter()
             binding.recyclerView.adapter = logEntryAdapter
             binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -58,10 +49,12 @@ class LogEntryFragment : Fragment(R.layout.fragment_log_entry), KoinComponent {
                     LogEntryDetail.Text(logEntry.description)
                 ).plus(
                     logEntry.steps.map { step ->
+                        // TODO Extract mapper
                         when (step) {
                             is Step.CheckableStep -> LogEntryDetail.Text(step.step.comment ?: "Empty")
                             is Step.IngredientStep -> LogEntryDetail.AddIngredient(step.ingredient, step.comment ?: "Empty")
                             is Step.TextStep -> LogEntryDetail.Text(step.comment)
+                            is Step.ImageStep -> LogEntryDetail.Image(step.url)
                         }
                     }
                 )

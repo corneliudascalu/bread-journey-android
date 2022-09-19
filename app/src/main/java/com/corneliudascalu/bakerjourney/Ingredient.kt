@@ -47,6 +47,7 @@ sealed class Step {
     data class TextStep(val comment: String) : Step()
     data class IngredientStep(val ingredient: Ingredient, val quantity: Grams, val comment: String?) : Step()
     data class CheckableStep(val step: IngredientStep, val checked: Boolean = false) : Step()
+    data class ImageStep(val url: String) : Step()
 }
 
 @Parcelize
