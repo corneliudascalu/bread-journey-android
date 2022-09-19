@@ -37,8 +37,14 @@ class LogEntryFragment : Fragment(R.layout.fragment_log_entry), KoinComponent {
             val logEntry = logRepository[it]
             requireNotNull(logEntry)
             binding.toolbar.title = logEntry.name
-            binding.collapsingToolbar.title = logEntry.description
+            binding.collapsingToolbar.title = logEntry.name
             binding.toolbar.subtitle = logEntry.description
+
+            Glide.with(binding.root)
+                .load(logEntry.photoUrl)
+                .centerCrop()
+                .into(binding.headerPhoto)
+
 
             val logEntryAdapter = LogEntryAdapter()
             binding.recyclerView.adapter = logEntryAdapter
