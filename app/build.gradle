@@ -14,12 +14,12 @@ keystoreProperties.load(new FileInputStream(keystorePropsFile))
 android {
     namespace 'com.corneliudascalu.bakerjourney'
 
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.corneliudascalu.bakerjourney.android"
         minSdk 24
-        targetSdk 33
+        targetSdk 34
         versionCode autoversion.code
         versionName autoversion.name
 
