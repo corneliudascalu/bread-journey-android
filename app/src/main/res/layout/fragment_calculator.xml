@@ -5,6 +5,14 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Sourdough Calculator"
+        app:titleCentered="true" />
+
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/flourIcon"
         android:layout_width="48dp"
@@ -12,7 +20,7 @@
         android:layout_marginTop="8dp"
         android:src="@drawable/outline_grass_24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:tint="?attr/colorPrimary" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -119,6 +127,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Notebook"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
