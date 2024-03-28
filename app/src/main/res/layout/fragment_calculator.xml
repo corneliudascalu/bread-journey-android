@@ -10,10 +10,10 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginTop="8dp"
-        android:src="@drawable/ic_baseline_grain_24"
+        android:src="@drawable/outline_grass_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="#0000FF" />
+        app:tint="?attr/colorPrimary" />
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -41,7 +41,7 @@
         android:src="@drawable/ic_round_invert_colors_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/starterIcon"
-        app:tint="#0000FF" />
+        app:tint="?attr/colorPrimary" />
 
     <com.google.android.material.slider.Slider
         android:id="@+id/waterSlider"
@@ -74,10 +74,10 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginTop="8dp"
-        android:src="@drawable/ic_baseline_lens_blur_24"
+        android:src="@drawable/glass_cup_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/flourIcon"
-        app:tint="#0000FF" />
+        app:tint="?attr/colorPrimary" />
 
     <com.google.android.material.slider.Slider
         android:id="@+id/starterSlider"
